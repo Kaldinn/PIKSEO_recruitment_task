@@ -10,10 +10,11 @@ def main(request):
     return render(request, template_name="main.html")
 
 class SkillList(ListView):
-    queryset = Skills.objects.all()
     template_name = "skills.html"
     context_object_name = "skills"
 
+    def get_queryset(self):
+        return Skills.objects.prefetch_related('persons_set__position').all()
 
 class PersonAgeUpdateView(FormView, ListView):
     template_name = 'age_form.html'
