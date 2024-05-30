@@ -22,7 +22,7 @@ class PersonAgeUpdateView(FormView, ListView):
     success_url = reverse_lazy('persons:age_form')
     context_object_name = 'persons_list'
 
-    def process_form(self, form):
+    def form_valid(self, form):
         selected_name = form.cleaned_data['name']
         api_response = requests.get(f'https://api.agify.io/?name={selected_name}')
         api_result = api_response.json()
