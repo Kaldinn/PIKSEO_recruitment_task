@@ -12,6 +12,7 @@ class Position(models.Model):
 class Persons(models.Model):
     first_name = models.CharField(verbose_name="Imię", max_length=64)
     last_name = models.CharField(verbose_name="Nazwisko", max_length=64)
+    age = models.IntegerField(null=True, blank=True)
     skills = models.ManyToManyField(Skills, verbose_name="Umiejętności")
     position = models.ForeignKey(
         Position, verbose_name="Stanowisko", null=True, on_delete=models.SET_NULL
